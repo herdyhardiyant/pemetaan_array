@@ -18,14 +18,36 @@ class ArrayFormulaMenu extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Array1D()));
                 },
                 child: Text("Hitung Array 1 Dimensi")),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Array2D()));
                 },
                 child: Text("Hitung Array 2 Dimensi")),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Array3D()));
+                },
+                child: Text("Hitung Array 3 Dimensi")),
+            SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Array3D()));
+                },
+                child: Text("Hitung Array 3 Dimensi")),
+            SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
