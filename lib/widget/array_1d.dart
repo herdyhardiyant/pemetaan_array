@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pemetaan_array/modals/hexadecimal_handler.dart';
+import 'package:pemetaan_array/modals/formula_handler.dart';
 import 'package:pemetaan_array/widget/custom_text_field.dart';
 
 class Array1D extends StatefulWidget {
@@ -8,32 +8,17 @@ class Array1D extends StatefulWidget {
 }
 
 class _Array1DState extends State<Array1D> {
-  var inputArray = TextEditingController();
-  var posisiAwalMemori = TextEditingController();
-  var tipeData = TextEditingController();
-  var indexYangDicari = TextEditingController();
-  var jawaban = '';
-
-  int get dataTypeMemory {
-    if (tipeData.text.toUpperCase() == 'INT') {
-      return 2;
-    } else if (tipeData.text.toUpperCase() == 'CHAR') {
-      return 1;
-    } else if (tipeData.text.toUpperCase() == 'FLOAT') {
-      return 4;
-    } else if (tipeData.text.toUpperCase() == 'DOUBLE') {
-      return 8;
-    } else {
-      return 0;
-    }
-  }
+  var _posisiAwalMemori = TextEditingController();
+  var _tipeData = TextEditingController();
+  var _indexYangDicari = TextEditingController();
+  var _jawaban = '';
 
   String _cariAlamatIndex1D() {
-    var tambahanHex =
-        ((int.tryParse(indexYangDicari.text) - 1) * dataTypeMemory)
-            .toRadixString(16);
+    var tambahanHex = ((int.tryParse(_indexYangDicari.text) - 1) *
+            FormulaHandler().getDataTypeSize(_tipeData.text))
+        .toRadixString(16);
     var hasil =
-        HexadecimalHandler().hexAddition(posisiAwalMemori.text, tambahanHex);
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
     print(hasil);
     return hasil;
   }
@@ -49,23 +34,22 @@ class _Array1DState extends State<Array1D> {
         children: [
           Column(
             children: [
-              CustomTextField(inputArray, 'Masukkan Array', 'A[1]'),
-              CustomTextField(posisiAwalMemori, 'Posisi Awal Index Memory',
-                  '0001 (Hexadecimal)'),
               CustomTextField(
-                  indexYangDicari, 'index yang dicari alamatnya', ''),
-              CustomTextField(tipeData, 'Tipe Data', 'int, char, etc'),
+                  _posisiAwalMemori, 'Posisi Awal Memory', 'contoh: 0001'),
+              CustomTextField(_indexYangDicari, 'Posisi index',
+                  'Posisi index array yang dicari alamatnya'),
+              CustomTextField(_tipeData, 'Tipe Data', 'int, char, etc'),
               TextButton(
                   onPressed: () {
                     setState(() {
-                      jawaban = _cariAlamatIndex1D();
+                      _jawaban = _cariAlamatIndex1D();
                     });
                   },
                   child: Text("Hasil Jawaban")),
               SizedBox(
                 height: 20,
               ),
-              Text(jawaban),
+              Text(_jawaban),
             ],
           )
         ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pemetaan_array/modals/hexadecimal_handler.dart';
+import 'package:pemetaan_array/modals/formula_handler.dart';
 import 'package:pemetaan_array/widget/custom_text_field.dart';
 
 class Array2D extends StatefulWidget {
@@ -8,29 +8,15 @@ class Array2D extends StatefulWidget {
 }
 
 class _Array2DState extends State<Array2D> {
-  var indexPertama = TextEditingController();
-  var indexKedua = TextEditingController();
-  var indexPertamaYgDicari = TextEditingController();
-  var indexKeduaYgDicari = TextEditingController();
-  var posisiAwalMemori = TextEditingController();
-  var tipeData = TextEditingController();
-  var jawabanPerKolom = '';
-  var jawabanPerBaris = '';
-  var jumlahElementArray = '';
-
-  int get dataTypeMemory {
-    if (tipeData.text.toUpperCase() == 'INT') {
-      return 2;
-    } else if (tipeData.text.toUpperCase() == 'CHAR') {
-      return 1;
-    } else if (tipeData.text.toUpperCase() == 'FLOAT') {
-      return 4;
-    } else if (tipeData.text.toUpperCase() == 'DOUBLE') {
-      return 8;
-    } else {
-      return 0;
-    }
-  }
+  var _totalBaris = TextEditingController();
+  var _totalKolom = TextEditingController();
+  var _indexBarisYgDicari = TextEditingController();
+  var _indexKolomYgDicari = TextEditingController();
+  var _posisiAwalMemori = TextEditingController();
+  var _tipeData = TextEditingController();
+  var _jawabanPerKolom = '';
+  var _jawabanPerBaris = '';
+  var _jumlahElementArray = '';
 
   String _cariAlamatIndex2DPerKolom() {
     /*
@@ -41,13 +27,14 @@ class _Array2DState extends State<Array2D> {
     = 0011(H) + 18 (H)
     = 0029(H)
      */
-    var K = int.tryParse(indexKedua.text);
-    var jMinusOne = int.tryParse(indexKeduaYgDicari.text) - 1;
-    var iMinusOne = (int.tryParse(indexPertamaYgDicari.text) - 1);
-    var tambahanHex =
-        ((jMinusOne * K + iMinusOne) * dataTypeMemory).toRadixString(16);
+    var K = int.tryParse(_totalKolom.text);
+    var jMinusOne = int.tryParse(_indexKolomYgDicari.text) - 1;
+    var iMinusOne = (int.tryParse(_indexBarisYgDicari.text) - 1);
+    var tambahanHex = ((jMinusOne * K + iMinusOne) *
+            FormulaHandler().getDataTypeSize(_tipeData.text))
+        .toRadixString(16);
     var hasil =
-        HexadecimalHandler().hexAddition(posisiAwalMemori.text, tambahanHex);
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
     print(hasil);
     return hasil;
   }
@@ -61,11 +48,14 @@ class _Array2DState extends State<Array2D> {
     = 0011(H) + 1C (H)
     = 002D(H)
      */
-    var N = int.tryParse(indexPertama.text);
-    var jMinusOne = int.tryParse(indexKeduaYgDicari.text) - 1;
-    var iMinusOne = (int.tryParse(indexPertamaYgDicari.text) - 1);
-    var tambahanHex = ((iMinusOne * N + jMinusOne) * dataTypeMemory).toRadixString(16);
-    var hasil = HexadecimalHandler().hexAddition(posisiAwalMemori.text, tambahanHex);
+    var N = int.tryParse(_totalBaris.text);
+    var jMinusOne = int.tryParse(_indexKolomYgDicari.text) - 1;
+    var iMinusOne = (int.tryParse(_indexBarisYgDicari.text) - 1);
+    var tambahanHex = ((iMinusOne * N + jMinusOne) *
+            FormulaHandler().getDataTypeSize(_tipeData.text))
+        .toRadixString(16);
+    var hasil =
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
     print(hasil);
     return hasil;
   }
@@ -83,20 +73,17 @@ class _Array2DState extends State<Array2D> {
             Column(
               children: [
                 CustomTextField(
-                    indexPertama,
-                    'Masukkan index pertama (Baris) dari array 2D',
-                    'Index saat deklarasi array'),
+                    _posisiAwalMemori, 'Posisi Awal Memory', 'contoh: 0001'),
+                CustomTextField(_totalBaris, 'Masukkan banyaknya baris!',
+                    'Total index ketika deklarasi array'),
+                CustomTextField(_totalKolom, 'Masukkan banyaknya kolom!',
+                    'Total index ketika deklarasi array'),
+                CustomTextField(_indexBarisYgDicari, 'Posisi index baris',
+                    'Posisi index array yang dicari alamatnya'),
+                CustomTextField(_indexKolomYgDicari, 'Posisi index kolom',
+                    'Posisi index array yang dicari alamatnya'),
                 CustomTextField(
-                    indexKedua,
-                    'Masukkan index kedua (Kolom) dari array 2D',
-                    'Index saat deklarasi array'),
-                CustomTextField(posisiAwalMemori, 'Posisi Awal Memory',
-                    '0001 (Hexadecimal)'),
-                CustomTextField(
-                    indexPertamaYgDicari, 'posisi index pertama (baris) yang dicari alamatnya', ''),
-                CustomTextField(
-                    indexKeduaYgDicari, 'posisi index kedua (kolom) yang dicari alamatnya', ''),
-                CustomTextField(tipeData, 'Tipe Data', 'int, char, etc'),
+                    _tipeData, 'Tipe Data', 'contoh: int, char, etc'),
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(20),
@@ -106,11 +93,11 @@ class _Array2DState extends State<Array2D> {
                       ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              jawabanPerKolom = _cariAlamatIndex2DPerKolom();
-                              jawabanPerBaris = _cariAlamatIndex2DPerBaris();
-                              jumlahElementArray = (int.tryParse(
-                                          indexPertama.text) *
-                                      int.tryParse(indexKedua.text.toString()))
+                              _jawabanPerKolom = _cariAlamatIndex2DPerKolom();
+                              _jawabanPerBaris = _cariAlamatIndex2DPerBaris();
+                              _jumlahElementArray = (int.tryParse(
+                                          _totalBaris.text) *
+                                      int.tryParse(_totalKolom.text.toString()))
                                   .toString();
                             });
                           },
@@ -118,17 +105,17 @@ class _Array2DState extends State<Array2D> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text("Total elemen index: " + jumlahElementArray),
+                      Text("Total elemen index: " + _jumlahElementArray),
                       SizedBox(
                         height: 20,
                       ),
                       Text("Jawaban dengan cara pandang Kolom: " +
-                          jawabanPerKolom),
+                          _jawabanPerKolom),
                       SizedBox(
                         height: 20,
                       ),
                       Text("Jawaban dengan cara pandang Baris: " +
-                          jawabanPerBaris),
+                          _jawabanPerBaris),
                       SizedBox(
                         height: 20,
                       ),
