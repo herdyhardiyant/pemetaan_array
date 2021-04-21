@@ -28,7 +28,7 @@ class _Array1DState extends State<Array1D> {
     }
   }
 
-  String cariAlamatIndex() {
+  String _cariAlamatIndex1D() {
     var tambahanHex =
         ((int.tryParse(indexYangDicari.text) - 1) * dataTypeMemory)
             .toRadixString(16);
@@ -52,12 +52,13 @@ class _Array1DState extends State<Array1D> {
               CustomTextField(inputArray, 'Masukkan Array', 'A[1]'),
               CustomTextField(posisiAwalMemori, 'Posisi Awal Index Memory',
                   '0001 (Hexadecimal)'),
-              CustomTextField(indexYangDicari, 'index yang dicari', ''),
+              CustomTextField(
+                  indexYangDicari, 'index yang dicari alamatnya', ''),
               CustomTextField(tipeData, 'Tipe Data', 'int, char, etc'),
               TextButton(
                   onPressed: () {
                     setState(() {
-                      jawaban = cariAlamatIndex();
+                      jawaban = _cariAlamatIndex1D();
                     });
                   },
                   child: Text("Hasil Jawaban")),
@@ -65,9 +66,6 @@ class _Array1DState extends State<Array1D> {
                 height: 20,
               ),
               Text(jawaban),
-              SizedBox(
-                height: 20,
-              ),
             ],
           )
         ],

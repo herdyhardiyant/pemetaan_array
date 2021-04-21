@@ -19,7 +19,7 @@ class ArrayFormulaMenu extends StatelessWidget {
                 },
                 child: Text("Hitung Array 1 Dimensi")),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: () {
@@ -28,25 +28,7 @@ class ArrayFormulaMenu extends StatelessWidget {
                 },
                 child: Text("Hitung Array 2 Dimensi")),
             SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Array3D()));
-                },
-                child: Text("Hitung Array 3 Dimensi")),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Array3D()));
-                },
-                child: Text("Hitung Array 3 Dimensi")),
-            SizedBox(
-              height: 10,
+              height: 20,
             ),
             ElevatedButton(
                 onPressed: () {

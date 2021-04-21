@@ -18,6 +18,8 @@ class CustomTextField extends StatelessWidget {
             helperText: helper,
             helperStyle: TextStyle(color: Colors.grey)),
         controller: inputValue,
+        maxLength: 20,
+
       ),
       margin: EdgeInsets.all(20),
     );
