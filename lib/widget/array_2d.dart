@@ -45,7 +45,7 @@ class _Array2DState extends State<Array2D> {
     var jMinusOne = int.tryParse(indexKeduaYgDicari.text) - 1;
     var iMinusOne = (int.tryParse(indexPertamaYgDicari.text) - 1);
     var tambahanHex =
-        (jMinusOne * K + iMinusOne * dataTypeMemory).toRadixString(16);
+        ((jMinusOne * K + iMinusOne) * dataTypeMemory).toRadixString(16);
     var hasil =
         HexadecimalHandler().hexAddition(posisiAwalMemori.text, tambahanHex);
     print(hasil);
@@ -64,7 +64,7 @@ class _Array2DState extends State<Array2D> {
     var N = int.tryParse(indexPertama.text);
     var jMinusOne = int.tryParse(indexKeduaYgDicari.text) - 1;
     var iMinusOne = (int.tryParse(indexPertamaYgDicari.text) - 1);
-    var tambahanHex = (iMinusOne * N + jMinusOne * dataTypeMemory).toRadixString(16);
+    var tambahanHex = ((iMinusOne * N + jMinusOne) * dataTypeMemory).toRadixString(16);
     var hasil = HexadecimalHandler().hexAddition(posisiAwalMemori.text, tambahanHex);
     print(hasil);
     return hasil;
@@ -84,12 +84,12 @@ class _Array2DState extends State<Array2D> {
               children: [
                 CustomTextField(
                     indexPertama,
-                    'Masukkan index pertama dari array 2D',
-                    'A[4][4] Index total array'),
+                    'Masukkan index pertama (Baris) dari array 2D',
+                    'Index saat deklarasi array'),
                 CustomTextField(
                     indexKedua,
-                    'Masukkan index kedua dari array 2D',
-                    'A[4][4] Index total array'),
+                    'Masukkan index kedua (Kolom) dari array 2D',
+                    'Index saat deklarasi array'),
                 CustomTextField(posisiAwalMemori, 'Posisi Awal Memory',
                     '0001 (Hexadecimal)'),
                 CustomTextField(
