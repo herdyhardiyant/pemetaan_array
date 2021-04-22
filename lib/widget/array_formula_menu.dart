@@ -3,45 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:pemetaan_array/widget/array_1d.dart';
 import 'package:pemetaan_array/widget/array_2d.dart';
 import 'package:pemetaan_array/widget/array_3d.dart';
+import 'package:pemetaan_array/widget/menu_button.dart';
+import 'package:pemetaan_array/widget/tringular_array.dart';
 
 class ArrayFormulaMenu extends StatelessWidget {
-  
-  static const _spacesBetweenElementsInsideColumn = 100.00;
-  
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.all(_spacesBetweenElementsInsideColumn),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Array1D()));
-                  },
-                  child: Text("Hitung Array 1 Dimensi"),
-              ),
-              SizedBox(
-                height: _spacesBetweenElementsInsideColumn,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Array2D()));
-                  },
-                  
-                  child: Text("Hitung Array 2 Dimensi")),
-              SizedBox(
-                height: _spacesBetweenElementsInsideColumn,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Array3D()));
-                  },
-                  child: Text("Hitung Array 3 Dimensi")),
+                MenuButton(context, 'Hitung array 1 Dimensi', (context){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Array1D()));
+                }),
+              MenuButton(context, 'Hitung array 2 Dimensi', (context){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Array2D()));
+                }),
+              MenuButton(context, 'Hitung array 3 Dimensi', (context){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Array3D()));
+                }),
+              MenuButton(context, 'Tringular Array', (context){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => TringularArray()));
+                }),
             ],
           ),
         ),

@@ -74,13 +74,13 @@ class _Array2DState extends State<Array2D> {
               children: [
                 CustomTextField(
                     _posisiAwalMemori, 'Posisi Awal Memory', 'contoh: 0001'),
-                CustomTextField(_totalBaris, 'Masukkan banyaknya baris!',
+                CustomTextField(_totalBaris, 'Masukkan total index 1!',
                     'Total index ketika deklarasi array'),
-                CustomTextField(_totalKolom, 'Masukkan banyaknya kolom!',
+                CustomTextField(_totalKolom, 'Masukkan total index 2!',
                     'Total index ketika deklarasi array'),
-                CustomTextField(_indexBarisYgDicari, 'Posisi index baris',
+                CustomTextField(_indexBarisYgDicari, 'Posisi index 1',
                     'Posisi index array yang dicari alamatnya'),
-                CustomTextField(_indexKolomYgDicari, 'Posisi index kolom',
+                CustomTextField(_indexKolomYgDicari, 'Posisi index 2',
                     'Posisi index array yang dicari alamatnya'),
                 CustomTextField(
                     _tipeData, 'Tipe Data', 'contoh: int, char, etc'),

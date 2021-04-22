@@ -39,7 +39,7 @@ class _Array1DState extends State<Array1D> {
               CustomTextField(_indexYangDicari, 'Posisi index',
                   'Posisi index array yang dicari alamatnya'),
               CustomTextField(_tipeData, 'Tipe Data', 'int, char, etc'),
-              TextButton(
+              ElevatedButton(
                   onPressed: () {
                     setState(() {
                       _jawaban = _cariAlamatIndex1D();

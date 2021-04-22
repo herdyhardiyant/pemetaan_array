@@ -89,8 +89,8 @@ class _Array3DState extends State<Array3D> {
                             setState(() {
                               _jumlahElementArray =
                                   (int.tryParse(_totalIndex1.text) *
-                                          int.tryParse(_totalIndex1.text) *
-                                          int.tryParse(_totalIndex1.text))
+                                          int.tryParse(_totalIndex2.text) *
+                                          int.tryParse(_totalIndex3.text))
                                       .toString();
                             });
                             _jawaban = _alamatPosisiArray();
