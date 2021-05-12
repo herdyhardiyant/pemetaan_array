@@ -5,6 +5,7 @@ import 'package:pemetaan_array/widget/custom_text_field.dart';
 class Array1D extends StatefulWidget {
   @override
   _Array1DState createState() => _Array1DState();
+  static const routeName = '/array-1d';
 }
 
 class _Array1DState extends State<Array1D> {
@@ -14,13 +15,13 @@ class _Array1DState extends State<Array1D> {
   var _jawaban = '';
 
   String _cariAlamatIndex1D() {
-    var tambahanHex = ((int.tryParse(_indexYangDicari.text) - 1) *
+    var formula = ((int.tryParse(_indexYangDicari.text) - 1) *
             FormulaHandler().getDataTypeSize(_tipeData.text))
         .toRadixString(16);
-    var hasil =
-        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
-    print(hasil);
-    return hasil;
+    var result =
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, formula);
+    print(result);
+    return result;
   }
 
   @override

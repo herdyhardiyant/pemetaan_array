@@ -4,6 +4,7 @@ import 'package:pemetaan_array/widget/custom_text_field.dart';
 class TringularArray extends StatefulWidget {
   @override
   _TringularArrayState createState() => _TringularArrayState();
+  static const routeName = '/tringular-array';
 }
 
 class _TringularArrayState extends State<TringularArray> {

@@ -5,6 +5,8 @@ import 'package:pemetaan_array/widget/custom_text_field.dart';
 class Array3D extends StatefulWidget {
   @override
   _Array3DState createState() => _Array3DState();
+  static const routeName = '/array-3d';
+
 }
 
 class _Array3DState extends State<Array3D> {
@@ -20,34 +22,17 @@ class _Array3DState extends State<Array3D> {
   var _jumlahElementArray = '';
 
   String _alamatPosisiArray() {
-    /*
-    1.Tentukan jumlah elemen array
-    A [2][4][3] = (2) * (4) * (3) = 24
-
-    2.@M[m][n][p] = M[0][0][0] + {((m-1) *(jum.elemen2 *jum.elemen3)) + ((n-1)*(jum.elemen3)) + (p-1)}* L
-
-    A[2][3][2] = 0011(H) + {((2–1) * 4 * 3) + ((3-1) * 3) + (2-1)} * 2
-    = 0011(H) + {12 + 6 + 1 } * 2
-    = 0011(H) + 38 (D) 26 (H)
-    = 0011(H) + 26 (H)
-    = 0037(H)
-
-     leftHand = ((m-1) *(jum.elemen2 *jum.elemen3))
-     rightHand = (n-1)*(jum.elemen3)
-     pMinusOne = (p-1)
-     L = dataTypeSize
-     */
     var leftHand = (int.tryParse(_posisiIndex1.text) - 1) *
         (int.tryParse(_totalIndex2.text) * int.tryParse(_totalIndex3.text));
     var rightHand = (int.tryParse(_posisiIndex2.text) - 1) *
         (int.tryParse(_totalIndex3.text));
     var pMinusOne = int.tryParse(_posisiIndex3.text) - 1;
-    var tambahanHex = ((leftHand + rightHand + pMinusOne) *
+    var formula = ((leftHand + rightHand + pMinusOne) *
         FormulaHandler().getDataTypeSize(_tipeData.text)).toRadixString(16);
-    var hasil =
-        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
-    print(hasil);
-    return hasil;
+    var result =
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, formula);
+    print(result);
+    return result;
   }
 
   @override

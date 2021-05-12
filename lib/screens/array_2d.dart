@@ -5,6 +5,8 @@ import 'package:pemetaan_array/widget/custom_text_field.dart';
 class Array2D extends StatefulWidget {
   @override
   _Array2DState createState() => _Array2DState();
+
+  static const routeName = '/array-2d';
 }
 
 class _Array2DState extends State<Array2D> {
@@ -19,35 +21,19 @@ class _Array2DState extends State<Array2D> {
   var _jumlahElementArray = '';
 
   String _cariAlamatIndex2DPerKolom() {
-    /*
-    Secara Kolom Per Kolom (Coloumn Major Oder / CMO)
-    @M[i][j] = @M[0][0] + {(j - 1) * K + (i - 1)} * L
-    X[3][2] = 0011(H) + {(2 – 1) * 4 + (3 – 1)} * 4
-    = 0011(H) + 24 (D) -> 18 (H)
-    = 0011(H) + 18 (H)
-    = 0029(H)
-     */
     var K = int.tryParse(_totalKolom.text);
     var jMinusOne = int.tryParse(_indexKolomYgDicari.text) - 1;
     var iMinusOne = (int.tryParse(_indexBarisYgDicari.text) - 1);
-    var tambahanHex = ((jMinusOne * K + iMinusOne) *
+    var formula = ((jMinusOne * K + iMinusOne) *
             FormulaHandler().getDataTypeSize(_tipeData.text))
         .toRadixString(16);
-    var hasil =
-        FormulaHandler().hexAddition(_posisiAwalMemori.text, tambahanHex);
-    print(hasil);
-    return hasil;
+    var result =
+        FormulaHandler().hexAddition(_posisiAwalMemori.text, formula);
+    print(result);
+    return result;
   }
 
   String _cariAlamatIndex2DPerBaris() {
-    /*
-    Secara Baris Per Baris (Row Major Oder / RMO)
-    @M[i][j] = @M[0][0] + {(i - 1) * N + (j - 1)} * L
-    X[3][2] = 0011(H) + {(3 – 1) * 3 + (2 – 1)} * 4
-    = 0011(H) + 28 (D) -> 1C (H)
-    = 0011(H) + 1C (H)
-    = 002D(H)
-     */
     var N = int.tryParse(_totalBaris.text);
     var jMinusOne = int.tryParse(_indexKolomYgDicari.text) - 1;
     var iMinusOne = (int.tryParse(_indexBarisYgDicari.text) - 1);

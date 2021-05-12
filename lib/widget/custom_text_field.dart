@@ -11,16 +11,12 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: TextField(
-        decoration: InputDecoration(
-            labelText: labelText,
-            labelStyle:
-            TextStyle(fontWeight: FontWeight.bold),
-            helperText: helper,
-            helperStyle: TextStyle(color: Colors.grey)),
-        controller: inputValue,
-        maxLength: 20,
-
-      ),
+          decoration: InputDecoration(
+              labelText: labelText,
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              helperText: helper,
+              helperStyle: TextStyle(color: Colors.grey)),
+          controller: inputValue),
       margin: EdgeInsets.all(20),
     );
   }
