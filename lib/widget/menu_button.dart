@@ -1,22 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
   final BuildContext ctx;
-  final Function toTheNextPage;
   final String text;
+  final String routeName;
 
-  MenuButton(this.ctx, this.text, this.toTheNextPage);
+  MenuButton(this.ctx, this.text, this.routeName);
 
   @override
   Widget build(BuildContext context) {
-    return Container(margin: EdgeInsets.all(20),
+    return Container(
+      margin: EdgeInsets.all(20),
       child: ElevatedButton(
           child: Text(text),
           onPressed: () {
-            toTheNextPage(ctx);
-            // Navigator.push(
-            //     ctx, MaterialPageRoute(builder: (ctx) => toTheNextPage()));
+            Navigator.pushNamed(ctx, routeName);
           },
           style: ButtonStyle(
               padding: MaterialStateProperty.all(

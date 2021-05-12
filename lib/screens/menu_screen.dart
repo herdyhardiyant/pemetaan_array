@@ -18,18 +18,14 @@ class MenuScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  MenuButton(context, 'Hitung array 1 Dimensi', (context) {
-                    Navigator.pushNamed(context, Array1D.routeName);
-                  }),
-                  MenuButton(context, 'Hitung array 2 Dimensi', (context) {
-                    Navigator.pushNamed(context, Array2D.routeName);
-                  }),
-                  MenuButton(context, 'Hitung array 3 Dimensi', (context) {
-                    Navigator.pushNamed(context, Array3D.routeName);
-                  }),
-                  MenuButton(context, 'Tringular Array', (context) {
-                    Navigator.pushNamed(context, TringularArray.routeName);
-                  }),
+                  MenuButton(
+                      context, 'Hitung array 1 Dimensi', Array1D.routeName),
+                  MenuButton(
+                      context, 'Hitung array 2 Dimensi', Array2D.routeName),
+                  MenuButton(
+                      context, 'Hitung array 3 Dimensi', Array3D.routeName),
+                  MenuButton(
+                      context, 'Tringular Array', TringularArray.routeName),
                 ],
               ),
             ),

@@ -30,31 +30,33 @@ class _Array1DState extends State<Array1D> {
       appBar: AppBar(
         title: Text("Pemetaan Array 1 Dimensi"),
       ),
-      body: Container(
-          child: Column(
-        children: [
-          Column(
-            children: [
-              CustomTextField(
-                  _posisiAwalMemori, 'Posisi Awal Memory', 'contoh: 0001'),
-              CustomTextField(_indexYangDicari, 'Posisi index',
-                  'Posisi index array yang dicari alamatnya'),
-              CustomTextField(_tipeData, 'Tipe Data', 'int, char, etc'),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _jawaban = _cariAlamatIndex1D();
-                    });
-                  },
-                  child: Text("Hasil Jawaban")),
-              SizedBox(
-                height: 20,
-              ),
-              Text(_jawaban),
-            ],
-          )
-        ],
-      )),
+      body: SingleChildScrollView(
+        child: Container(
+            child: Column(
+          children: [
+            Column(
+              children: [
+                CustomTextField(
+                    _posisiAwalMemori, 'Posisi Awal Memory', 'contoh: 0001'),
+                CustomTextField(_indexYangDicari, 'Posisi index',
+                    'Posisi index array yang dicari alamatnya'),
+                CustomTextField(_tipeData, 'Tipe Data', 'int, char, etc'),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _jawaban = _cariAlamatIndex1D();
+                      });
+                    },
+                    child: Text("Hasil Jawaban")),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(_jawaban),
+              ],
+            )
+          ],
+        )),
+      ),
     );
   }
 }
